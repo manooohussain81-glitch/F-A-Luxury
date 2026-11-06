@@ -7,7 +7,7 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 # Set to editorial_workflow if you want drafts / review before publishing
-publish: simple_mode
+publish: simple
 locale: "en"
 
 collections:
