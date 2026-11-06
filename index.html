@@ -4,7 +4,15 @@
 <title>Aurélie — Ladies’ Couture & Pret</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if (window.netlifyIdentity) {
+  netlifyIdentity.on("init", user => {
+    if (!user) netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+  });
+}
+</script>
+ <style>
 *{box-sizing:border-box;margin:0}
 :root{--bg:#faf5ef;--fg:#2a1420;--mut:#7d6b70;--card:#fff;--line:#e8dcd2;--acc:#6e1b43;--on:#fff;--gold:#b5875a;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0f15;--fg:#f6ebe6;--mut:#b9a3a9;--card:#26171f;--line:#3a2630;--acc:#e8a4bc;--on:#2a1420;--gold:#d4a574;color-scheme:dark}}
