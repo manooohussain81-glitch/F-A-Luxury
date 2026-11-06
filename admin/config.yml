@@ -1,0 +1,64 @@
+backend:
+  name: git-gateway
+  branch: main            # change to "master" if that is your repo's default branch
+
+# Uploaded images are saved here and served from /images/uploads
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Set to editorial_workflow if you want drafts / review before publishing
+publish: simple
+locale: "en"
+
+collections:
+  # ---------- Products ----------
+  - name: "catalog"
+    label: "Products"
+    files:
+      - name: "products"
+        label: "All Products"
+        file: "data/products.json"
+        format: "json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            label_singular: "product"
+            summary: "{{fields.name}} — Rs {{fields.price}}"
+            fields:
+              - { label: "Product Name", name: "name", widget: "string" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Lawn", "Bridal", "Pret", "Embroidered"]
+              - { label: "Price (Rs)", name: "price", widget: "number", value_type: "int", min: 0 }
+              - label: "Colour"
+                name: "color"
+                widget: "select"
+                options: ["Ivory", "Rose", "Emerald", "Plum", "Sand", "Sky"]
+              - label: "Available Sizes"
+                name: "sizes"
+                widget: "select"
+                multiple: true
+                options: ["XS", "S", "M", "L", "XL"]
+                default: ["S", "M", "L"]
+              - { label: "Product Image", name: "image", widget: "image", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "In Stock", name: "in_stock", widget: "boolean", default: true }
+
+  # ---------- Site text ----------
+  - name: "settings"
+    label: "Site Text & Settings"
+    files:
+      - name: "site"
+        label: "Homepage & Store Text"
+        file: "data/site.json"
+        format: "json"
+        fields:
+          - { label: "Brand Name", name: "brand", widget: "string", default: "Aurélie" }
+          - { label: "Hero Eyebrow", name: "eyebrow", widget: "string", default: "Winter ’26 Edit" }
+          - { label: "Hero Title", name: "title", widget: "string", default: "Dressed in quiet luxury." }
+          - { label: "Hero Tagline", name: "tagline", widget: "text" }
+          - { label: "Free Delivery Above (Rs)", name: "free_shipping_over", widget: "number", value_type: "int", default: 15000 }
+          - { label: "Shipping Fee (Rs)", name: "shipping_fee", widget: "number", value_type: "int", default: 450 }
+          - { label: "Footer Text", name: "footer", widget: "string" }
