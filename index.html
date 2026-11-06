@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aurélie — Ladies’ Couture & Pret</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--bg:#faf5ef;--fg:#2a1420;--mut:#7d6b70;--card:#fff;--line:#e8dcd2;--acc:#6e1b43;--on:#fff;--gold:#b5875a;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0f15;--fg:#f6ebe6;--mut:#b9a3a9;--card:#26171f;--line:#3a2630;--acc:#e8a4bc;--on:#2a1420;--gold:#d4a574;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a0f15;--fg:#f6ebe6;--mut:#b9a3a9;--card:#26171f;--line:#3a2630;--acc:#e8a4bc;--on:#2a1420;--gold:#d4a574;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 Inter,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 5vw;background:var(--bg);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{font-size:28px;font-weight:600;letter-spacing:.04em}
+#acct,.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hi{font-size:14px;color:var(--mut)}
+.b{border:1px solid var(--fg);background:none;color:var(--fg);padding:9px 16px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
+.b.p{background:var(--acc);border-color:var(--acc);color:var(--on)}
+.b:disabled{opacity:.4;cursor:not-allowed}
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:center;padding:40px 5vw 24px;max-width:1300px;margin:auto}
+.eye{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-size:12px;font-weight:600}
+h1{font-size:clamp(44px,7vw,88px);line-height:.98;font-weight:500;margin:12px 0 16px}
+h1 em{color:var(--acc)}
+.lead{color:var(--mut);max-width:440px;margin-bottom:22px}
+.stage{position:relative;display:grid;place-items:center;justify-items:center}
+.stage::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold),var(--acc));opacity:.22}
+#gl{position:relative;width:min(100%,520px);aspect-ratio:520/580;touch-action:none;cursor:grab}
+.hint{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:20px;color:var(--mut);transition:opacity .4s;text-align:center;margin-top:4px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:7px 14px;border-radius:99px;font:inherit;font-size:13px;cursor:pointer}
+.chip.on{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.sw{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.sw.on{outline:2px solid var(--acc);outline-offset:2px}
+#shop{padding:40px 5vw 70px;max-width:1300px;margin:auto}
+#shop h2{font-size:40px;font-weight:500;margin-bottom:14px}
+.filters{display:grid;gap:12px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:22px}
+.filters label{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;margin-right:6px}
+.filters input[type=range]{width:200px;margin:0;padding:0;vertical-align:middle;accent-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.th{aspect-ratio:4/4.6;display:grid;place-items:center}
+.th svg{width:62%}
+.pi{padding:14px;display:grid;gap:6px}
+.pi small{color:var(--mut)}
+.pi b{font-size:16px}
+.ov{position:fixed;inset:0;z-index:50;background:rgba(20,8,14,.55);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:12px}
+.ov.open{opacity:1;pointer-events:auto}
+.md{background:var(--bg);border:1px solid var(--line);border-radius:20px;width:min(480px,100%);max-height:92vh;overflow:auto;padding:24px}
+.side{place-items:stretch end;padding:0}
+.side .md{height:100%;max-height:none;border-radius:0;width:min(420px,100%);transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+.side.open .md{transform:none}
+.md h3{font-size:30px;font-weight:600;margin-bottom:10px}
+input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;margin:5px 0 10px}
+.pay{display:flex;gap:10px}.pay label{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;gap:8px;align-items:center;cursor:pointer}.pay input{width:auto;margin:0}
+.err{color:#c0392b;font-size:13px;min-height:18px}
+.ci{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.ci .th{width:60px;aspect-ratio:1;border-radius:10px;flex:none}
+.ci>div:nth-child(2){flex:1}
+.q{display:inline-flex;gap:8px;align-items:center;margin-top:4px}.q button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.tot{display:flex;justify-content:space-between;font-size:18px;font-weight:600;padding:14px 0}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:99px;opacity:0;transition:.3s;z-index:80;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.lk{background:none;border:0;color:var(--acc);cursor:pointer;font:inherit;font-size:13px;text-decoration:underline;padding:0}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
+</style></head><body>
+<header>
+ <div class="logo serif">F&A Luxury</div>
+ <div class="row">
+  <div id="acct"></div>
+  <button class="b" id="th" aria-label="Toggle theme">◐</button>
+  <button class="b p" id="cb">Bag (<span id="cc">0</span>)</button>
+ </div>
+</header>
+
+<section class="hero">
+ <div>
+  <div class="eye">Winter ’26 Edit</div>
+  <h1 class="serif">Dressed in <em>quiet luxury.</em></h1>
+  <p class="lead">Lawn, bridal, pret and embroidered suits for the woman who notices the details. Pull the fabric, then find yours.</p>
+  <div id="info"></div>
+ </div>
+ <div class="stage">
+  <canvas id="gl"></canvas>
+  <div class="hint" id="hint">drag the fabric — it springs back</div>
+  <div class="tabs" id="tabs"></div>
+ </div>
+</section>
+
+<section id="shop">
+ <h2 class="serif">The Collection</h2>
+ <div class="filters">
+  <div><label>Category</label><span class="row" style="display:inline-flex" id="fc"></span></div>
+  <div><label>Max price</label><input type="range" id="fp" min="5000" max="130000" step="1000" value="130000"> <b id="fpv"></b></div>
+  <div><label>Size</label><span class="row" style="display:inline-flex" id="fs"></span></div>
+  <div><label>Colour</label><span class="row" style="display:inline-flex" id="fk"></span></div>
+ </div>
+ <div class="grid" id="grid"></div>
+</section>
+<footer>© 2026 Aurélie · Free delivery above Rs 15,000 · Cash on delivery nationwide</footer>
+
+<!-- Auth -->
+<div class="ov" id="auth"><div class="md">
+ <h3 class="serif" id="at">Welcome</h3>
+ <form data-f="login">
+  <input name="email" type="email" placeholder="Email" required autocomplete="email">
+  <input name="pw" type="password" placeholder="Password" required autocomplete="current-password">
+  <button class="b p" style="width:100%">Log in</button>
+  <p style="margin-top:10px"><button type="button" class="lk" data-v="reset">Forgot password?</button> · <button type="button" class="lk" data-v="signup">Create account</button></p>
+ </form>
+ <form data-f="signup" hidden>
+  <input name="name" placeholder="Full name" required autocomplete="name">
+  <input name="email" type="email" placeholder="Email" required autocomplete="email">
+  <input name="pw" type="password" placeholder="Password (8+ characters)" minlength="8" required autocomplete="new-password">
+  <button class="b p" style="width:100%">Create account</button>
+  <p style="margin-top:10px"><button type="button" class="lk" data-v="login">Already a member? Log in</button></p>
+ </form>
+ <form data-f="reset" hidden>
+  <input name="email" type="email" placeholder="Account email" required>
+  <div id="rs2" hidden><input name="code" placeholder="6-digit code" inputmode="numeric"><input name="pw" type="password" placeholder="New password (8+ characters)" minlength="8"></div>
+  <button class="b p" style="width:100%" id="rsb">Send reset code</button>
+  <p style="margin-top:10px"><button type="button" class="lk" data-v="login">Back to log in</button></p>
+ </form>
+ <p class="err" id="msg"></p>
+</div></div>
+
+<!-- Cart -->
+<div class="ov side" id="cart"><div class="md">
+ <h3 class="serif">Your bag</h3>
+ <div id="items" style="flex:1;overflow:auto"></div>
+ <div class="tot"><span>Total</span><span id="ct">Rs 0</span></div>
+ <button class="b p" id="go">Checkout</button>
+</div></div>
+
+<!-- Checkout -->
+<div class="ov" id="co"><div class="md">
+ <div id="cof">
+  <h3 class="serif">Checkout</h3>
+  <form id="cf">
+   <input name="name" placeholder="Full name" required>
+   <input name="phone" type="tel" placeholder="Phone (03xx xxxxxxx)" required>
+   <input name="addr" placeholder="Street address" required>
+   <input name="city" placeholder="City" required>
+   <div class="pay">
+    <label><input type="radio" name="pay" value="cod" checked> Cash on delivery</label>
+    <label><input type="radio" name="pay" value="card"> Card</label>
+   </div>
+   <div id="cd" hidden style="margin-top:10px">
+    <input name="cn" placeholder="Card number" inputmode="numeric" maxlength="19">
+    <div style="display:flex;gap:8px"><input name="ce" placeholder="MM/YY" maxlength="5"><input name="cv" placeholder="CVC" maxlength="4"></div>
+   </div>
+   <div class="tot" style="font-size:15px;display:block;font-weight:400" id="sum"></div>
+   <button class="b p" style="width:100%">Place order</button>
+  </form>
+  <p class="err" id="cerr"></p>
+ </div>
+ <div id="cod" hidden><h3 class="serif">Thank you!</h3><p id="oid"></p><br><button class="b p" data-close>Continue shopping</button></div>
+</div></div>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const mem={},S={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):(k in mem?mem[k]:d)}catch{return k in mem?mem[k]:d}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>'&#'+c.charCodeAt()+';'),fmt=n=>'Rs '+n.toLocaleString('en-PK');
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2400)}
+/* ---------- data ---------- */
+const CATS=['Lawn','Bridal','Pret','Embroidered'],SIZES=['XS','S','M','L','XL'];
+const COLORS={Ivory:'#f1e7d3',Rose:'#d98ca0',Emerald:'#1f6b55',Plum:'#5a1f45',Sand:'#c9a77c',Sky:'#8fb3d9'};
+const P=[['Zarina Printed Lawn','Lawn',8900,'Sky'],['Mehr Lawn 3-Piece','Lawn',11500,'Rose'],['Saira Chikankari Lawn','Lawn',13900,'Ivory'],['Noor Bridal Lehnga','Bridal',89000,'Rose'],['Mahnoor Bridal Gown','Bridal',124000,'Ivory'],['Rukh Walima Maxi','Bridal',68000,'Emerald'],['Aiza Pret Kurta Set','Pret',6500,'Sand'],['Hira Co-ord Pret','Pret',7900,'Plum'],['Sana Linen Shirt Dress','Pret',9200,'Sky'],['Gulnar Embroidered Suit','Embroidered',24500,'Emerald'],['Dilkash Zari Suit','Embroidered',31000,'Plum'],['Mariam Threadwork Suit','Embroidered',27800,'Sand']].map((a,i)=>({id:i,name:a[0],cat:a[1],price:a[2],color:a[3],sizes:SIZES.slice(i%2,i%2+4)}));
+const dress=c=>`<svg viewBox="0 0 100 120"><path d="M42 20q8 10 16 0l8 12-4 26q14 22 20 56Q50 118 10 114q6-34 20-56l-4-26z" fill="${c}" stroke="rgba(0,0,0,.15)"/></svg>`;
+const thumb=p=>`<div class="th" style="background:linear-gradient(160deg,${COLORS[p.color]}33,${COLORS[p.color]}0d)">${dress(COLORS[p.color])}</div>`;
+/* ---------- catalog ---------- */
+const f={cat:'All',max:130000,size:'',color:''};
+function chips(el,list,key,sw){el.innerHTML='';list.forEach(v=>{const b=document.createElement('button');b.className=sw?'sw':'chip';if(sw){b.style.background=COLORS[v];b.title=v}else b.textContent=v;b.dataset.v=v;b.onclick=()=>{f[key]=(key=='cat'||f[key]!=v)?v:'';mark();render()};el.append(b)})}
+function mark(){$$('#fc .chip').forEach(b=>b.classList.toggle('on',b.dataset.v==f.cat));$$('#fs .chip').forEach(b=>b.classList.toggle('on',b.dataset.v==f.size));$$('#fk .sw').forEach(b=>b.classList.toggle('on',b.dataset.v==f.color))}
+function render(){$('#fpv').textContent=fmt(f.max);
+ const l=P.filter(p=>(f.cat=='All'||p.cat==f.cat)&&p.price<=f.max&&(!f.size||p.sizes.includes(f.size))&&(!f.color||p.color==f.color));
+ $('#grid').innerHTML=l.length?l.map(p=>`<div class="pc">${thumb(p)}<div class="pi"><small>${p.cat} · ${p.color}</small><b>${p.name}</b><span>${fmt(p.price)}</span><select id="sz${p.id}">${p.sizes.map(s=>`<option ${s==f.size?'selected':''}>${s}</option>`).join('')}</select><button class="b p" data-add="${p.id}">Add to bag</button></div></div>`).join(''):'<p style="color:var(--mut)">No pieces match these filters.</p>'}
+chips($('#fc'),['All',...CATS],'cat');chips($('#fs'),SIZES,'size');chips($('#fk'),Object.keys(COLORS),'color',1);mark();
+$('#fp').oninput=e=>{f.max=+e.target.value;render()};
+$('#grid').onclick=e=>{const id=e.target.dataset.add;if(id!=null)add(+id,$('#sz'+id).value)};
+/* ---------- cart ---------- */
+let cart=S.get('cart',[]);
+const total=()=>cart.reduce((s,i)=>s+P[i.id].price*i.qty,0);
+function saveCart(){S.set('cart',cart);$('#cc').textContent=cart.reduce((s,i)=>s+i.qty,0);
+ $('#items').innerHTML=cart.length?cart.map((i,n)=>{const p=P[i.id];return`<div class="ci">${thumb(p)}<div><b>${p.name}</b><br><small>Size ${i.size} · ${fmt(p.price)}</small><div class="q"><button data-q="${n}:-1">−</button>${i.qty}<button data-q="${n}:1">+</button></div></div><button class="lk" data-rm="${n}">Remove</button></div>`}).join(''):'<p style="color:var(--mut);padding:20px 0">Your bag is empty.</p>';
+ $('#ct').textContent=fmt(total());$('#go').disabled=!cart.length}
+function add(id,size){const x=cart.find(i=>i.id==id&&i.size==size);x?x.qty++:cart.push({id,size,qty:1});saveCart();toast('Added to bag');openM('cart')}
+$('#items').onclick=e=>{const q=e.target.dataset.q,r=e.target.dataset.rm;if(q){const[n,d]=q.split(':');cart[n].qty+=+d;if(cart[n].qty<1)cart.splice(n,1)}else if(r!=null)cart.splice(r,1);else return;saveCart()};
+/* ---------- modals ---------- */
+const openM=id=>$('#'+id).classList.add('open');
+const closeAll=()=>$$('.ov').forEach(o=>o.classList.remove('open'));
+$$('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o||e.target.dataset.close!=null)closeAll()}));
+addEventListener('keydown',e=>e.key=='Escape'&&closeAll());
+$('#cb').onclick=()=>openM('cart');
+$('#th').onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=d?'light':'dark'};
+/* ---------- auth ---------- */
+let sess=S.get('session',null);if(sess&&sess.exp<Date.now()){sess=null;S.set('session',null)}
+const msg=t=>$('#msg').textContent=t||'';
+const titles={login:'Welcome back',signup:'Join Aurélie',reset:'Reset password'};
+function view(v){$$('[data-f]').forEach(f=>f.hidden=f.dataset.f!=v);$('#at').textContent=titles[v];msg();openM('auth')}
+$('#auth').addEventListener('click',e=>{if(e.target.dataset.v)view(e.target.dataset.v)});
+async function H(e,p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('aurelie:'+e+':'+p));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch{return btoa(e+':'+p)}}
+function start(email,name){const a=new Uint8Array(16);crypto.getRandomValues(a);sess={token:[...a].map(x=>x.toString(16).padStart(2,'0')).join(''),email,name,exp:Date.now()+6048e5};S.set('session',sess);authUI()}
+function authUI(){$('#acct').innerHTML=sess?`<span class="hi">Hi, ${esc(sess.name)}</span><button class="b" id="lo">Log out</button>`:`<button class="b" data-a="login">Log in</button><button class="b p" data-a="signup">Sign up</button>`}
+$('#acct').onclick=e=>{if(e.target.dataset.a)view(e.target.dataset.a);if(e.target.id=='lo'){sess=null;S.set('session',null);authUI();toast('Logged out')}};
+const fd=f=>Object.fromEntries(new FormData(f));
+document.forms[0]&&0;
+$('[data-f=login]').onsubmit=async e=>{e.preventDefault();const d=fd(e.target),em=d.email.toLowerCase(),u=S.get('users',{})[em];
+ if(!u||u.h!=await H(em,d.pw))return msg('Incorrect email or password.');start(em,u.name);closeAll();e.target.reset();toast('Welcome back, '+u.name)};
+$('[data-f=signup]').onsubmit=async e=>{e.preventDefault();const d=fd(e.target),em=d.email.toLowerCase(),us=S.get('users',{});
+ if(us[em])return msg('An account with this email already exists.');us[em]={name:d.name.trim(),h:await H(em,d.pw)};S.set('users',us);start(em,us[em].name);closeAll();e.target.reset();toast('Account created')};
+$('[data-f=reset]').onsubmit=async e=>{e.preventDefault();const d=fd(e.target),em=d.email.toLowerCase(),us=S.get('users',{});
+ if($('#rs2').hidden){if(!us[em])return msg('No account found for that email.');const code=String(Math.floor(1e5+Math.random()*9e5));S.set('reset',{em,code,exp:Date.now()+6e5});
+  $('#rs2').hidden=false;$('#rs2 [name=code]').required=$('#rs2 [name=pw]').required=true;$('#rsb').textContent='Set new password';msg('Demo mode: no email server, so your code is '+code)}
+ else{const r=S.get('reset',null);if(!r||r.em!=em||r.code!=d.code.trim()||r.exp<Date.now())return msg('Invalid or expired code.');
+  us[em].h=await H(em,d.pw);S.set('users',us);S.set('reset',null);e.target.reset();$('#rs2').hidden=true;$('#rsb').textContent='Send reset code';view('login');msg('Password updated — please log in.')}};
+authUI();
+/* ---------- checkout ---------- */
+const ship=()=>total()>=15000?0:450;
+$('#go').onclick=()=>{closeAll();$('#cof').hidden=false;$('#cod').hidden=true;if(sess)$('#cf [name=name]').value=sess.name;
+ $('#sum').innerHTML=`<div class="tot" style="padding:4px 0;font-size:14px;font-weight:400"><span>Subtotal</span><span>${fmt(total())}</span></div><div class="tot" style="padding:4px 0;font-size:14px;font-weight:400"><span>Shipping</span><span>${ship()?fmt(ship()):'Free'}</span></div><div class="tot" style="padding:6px 0"><span>Total</span><span>${fmt(total()+ship())}</span></div>`;openM('co')};
+$('#cf').onchange=e=>{if(e.target.name=='pay'){$('#cd').hidden=e.target.value!='card';$$('#cd input').forEach(i=>i.required=e.target.value=='card')}};
+$('#cf').onsubmit=e=>{e.preventDefault();const d=fd(e.target),er=$('#cerr');er.textContent='';
+ if(d.pay=='card'&&(d.cn.replace(/\D/g,'').length<13||!/^\d\d\/\d\d$/.test(d.ce)||d.cv.length<3))return er.textContent='Please check your card details.';
+ const id='AUR-'+Date.now().toString(36).toUpperCase(),o=S.get('orders',[]);
+ o.push({id,items:cart,total:total()+ship(),ship:{name:d.name,phone:d.phone,addr:d.addr,city:d.city},pay:d.pay,at:Date.now()});S.set('orders',o);
+ cart=[];saveCart();e.target.reset();$('#cd').hidden=true;$('#cof').hidden=true;$('#cod').hidden=false;
+ $('#oid').textContent=`Order ${id} is confirmed. ${d.pay=='cod'?'Please keep cash ready on delivery.':'Your card was accepted (demo — no real charge).'}`};
+/* ---------- hero: WebGL2 mesh warp ---------- */
+const C=[{n:'Lawn Collection',s:'Breezy printed cotton lawn for long summer afternoons.',a:'#f4d9c9',b:'#e9a9a0',d:'#fff7ee',e:'#d98ca0',cat:'Lawn'},
+{n:'Bridal Wear',s:'Hand-finished lehngas and gowns for the day that matters most.',a:'#4a1230',b:'#8c2b5c',d:'#f6e3d0',e:'#b5875a',cat:'Bridal'},
+{n:'Pret',s:'Easy, tailored everyday pieces that move from desk to dinner.',a:'#cfe0ee',b:'#8fb3d9',d:'#fdfbf7',e:'#5c7fa8',cat:'Pret'},
+{n:'Embroidered Suits',s:'Zari and threadwork suits with heirloom detail.',a:'#0f3d31',b:'#1f6b55',d:'#efe3c2',e:'#b5875a',cat:'Embroidered'}];
+const D=[x=>{for(let y=110;y<560;y+=24)for(let X=190+(y/24%2)*12;X<440;X+=24){x.beginPath();x.arc(X,y,3.2,0,7);x.fill()}},
+x=>{for(let n=0;n<70;n++){const X=190+(n*97%230),Y=120+(n*53%420);x.fillRect(X-5,Y-.8,10,1.6);x.fillRect(X-.8,Y-5,1.6,10)}},
+x=>{for(let X=180;X<440;X+=13)x.fillRect(X,100,3,460)},
+x=>{for(let n=0;n<12;n++){const X=200+(n*83%220),Y=170+(n*61%350);for(let k=0;k<6;k++){const a=k*1.047;x.beginPath();x.ellipse(X+Math.cos(a)*9,Y+Math.sin(a)*9,6,3,a,0,7);x.fill()}}}];
+function tex(i){const c=C[i],k=document.createElement('canvas');k.width=512;k.height=640;const x=k.getContext('2d');
+ x.beginPath();x.roundRect(0,0,512,640,36);const g=x.createLinearGradient(0,0,512,640);g.addColorStop(0,c.a);g.addColorStop(1,c.b);x.fillStyle=g;x.fill();
+ const dp=new Path2D('M226 110Q256 145 286 110L312 150 296 250Q362 360 402 520Q256 548 110 520Q150 360 216 250L200 150Z');
+ x.fillStyle=c.d;x.fill(dp);x.save();x.clip(dp);x.fillStyle=c.e;D[i](x);x.restore();
+ x.fillStyle=i==2?'#2a3b52':'#fff';x.textAlign='center';x.font='600 40px "Cormorant Garamond",Georgia,serif';x.fillText(c.n,256,602);
+ x.font='500 16px Inter,sans-serif';x.textAlign='left';x.fillText('N° 0'+(i+1),32,48);return k}
+const cv=$('#gl'),gl=cv.getContext('webgl2',{alpha:true,premultipliedAlpha:true,antialias:true});let cur=0,pulled=false;
+const slots=[0,1,2,3].map(()=>({on:0,gx:.5,gy:.5,x:0,y:0,vx:0,vy:0,tx:0,ty:0,sx:0,sy:0,t0:0}));
+function pick(i){cur=i;$$('#tabs .chip').forEach((b,n)=>b.classList.toggle('on',n==i));
+ $('#info').innerHTML=`<h3 class="serif" style="font-size:30px;font-weight:600">${C[i].n}</h3><p class="lead" style="margin:4px 0 12px">${C[i].s}</p><button class="b p" id="shopc">Shop ${C[i].n}</button>`;
+ $('#shopc').onclick=()=>{f.cat=C[i].cat;mark();render();$('#shop').scrollIntoView()};
+ if(gl){gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,tex(i));const s=slots[0];if(!s.on){s.gx=s.gy=.5;s.vx=.12;s.vy=-.1}}}
+$('#tabs').innerHTML=C.map((c,i)=>`<button class="chip" data-i="${i}">${c.n}</button>`).join('');
+$('#tabs').onclick=e=>{if(e.target.dataset.i)pick(+e.target.dataset.i)};
+if(!gl){cv.remove();pick(0);$('#hint').textContent='';}else{
+const VS=`#version 300 es
+in vec2 p;uniform vec2 g[4],o[4],tilt;uniform float t;out vec2 uv;out float st;
+void main(){vec2 d=vec2(0);for(int i=0;i<4;i++){float r=distance(p,g[i]);d+=o[i]*exp(-r*r*14.);}
+vec2 b=(p*2.-1.)*.7;b.y=-b.y;b.y+=sin(t*1.3+p.x*3.)*.006;b+=tilt*(1.-length(p-.5))*.05;
+gl_Position=vec4(b+d,0,1);uv=p;st=length(d);}`;
+const FS=`#version 300 es
+precision mediump float;uniform sampler2D T;in vec2 uv;in float st;out vec4 c;
+void main(){vec4 x=texture(T,uv);x.rgb=x.rgb*(1.+st*.25)+x.a*st*.2;c=x;}`;
+const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o},pg=gl.createProgram();
+gl.attachShader(pg,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pg,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pg);gl.useProgram(pg);
+const N=128,pts=[],idx=[];for(let j=0;j<=N;j++)for(let i=0;i<=N;i++)pts.push(i/N,j/N);
+for(let j=0;j<N;j++)for(let i=0;i<N;i++){const a=j*(N+1)+i,b=a+1,c=a+N+1,d=c+1;idx.push(a,b,c,b,d,c)}
+gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(pts),gl.STATIC_DRAW);
+const L=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(L);gl.vertexAttribPointer(L,2,gl.FLOAT,false,0,0);
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(idx),gl.STATIC_DRAW);
+gl.bindTexture(gl.TEXTURE_2D,gl.createTexture());[[gl.TEXTURE_MIN_FILTER,gl.LINEAR],[gl.TEXTURE_MAG_FILTER,gl.LINEAR],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]].forEach(a=>gl.texParameteri(gl.TEXTURE_2D,a[0],a[1]));
+gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+const U=n=>gl.getUniformLocation(pg,n),uG=U('g[0]'),uO=U('o[0]'),uT=U('t'),uL=U('tilt');
+const tilt={x:0,y:0,tx:0,ty:0};
+const clip=e=>{const r=cv.getBoundingClientRect();return[((e.clientX-r.left)/r.width)*2-1,-(((e.clientY-r.top)/r.height)*2-1)]};
+cv.onpointerdown=e=>{const s=slots.find(s=>!s.on&&Math.hypot(s.x,s.y)<.03)||slots.find(s=>!s.on);if(!s)return;
+ const[cx,cy]=clip(e);s.on=e.pointerId;s.gx=(cx/.7+1)/2;s.gy=(-cy/.7+1)/2;s.sx=cx;s.sy=cy;s.tx=s.ty=0;s.t0=performance.now();cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing';
+ if(!pulled){pulled=true;$('#hint').style.opacity=0}};
+cv.onpointermove=e=>{const s=slots.find(s=>s.on==e.pointerId);if(!s)return;const[cx,cy]=clip(e);let dx=cx-s.sx,dy=cy-s.sy;const m=Math.hypot(dx,dy);if(m>1.3){dx*=1.3/m;dy*=1.3/m}s.tx=dx;s.ty=dy};
+const up=e=>{const s=slots.find(s=>s.on==e.pointerId);if(!s)return;const tap=performance.now()-s.t0<250&&Math.hypot(s.tx,s.ty)<.05;s.on=0;s.tx=s.ty=0;if(tap){s.vx=(Math.random()-.5)*.3;s.vy=.25}cv.style.cursor='grab'};
+cv.onpointerup=cv.onpointercancel=up;
+document.querySelector('.stage').onpointermove=e=>{const r=cv.getBoundingClientRect();tilt.tx=((e.clientX-r.left)/r.width-.5)*2;tilt.ty=-((e.clientY-r.top)/r.height-.5)*2};
+document.querySelector('.stage').onpointerleave=()=>tilt.tx=tilt.ty=0;
+function fr(ms){const dpr=Math.min(devicePixelRatio||1,2),w=Math.round(cv.clientWidth*dpr),h=Math.round(cv.clientHeight*dpr);if(cv.width!=w||cv.height!=h){cv.width=w;cv.height=h}
+ gl.viewport(0,0,w,h);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+ const g=new Float32Array(8),o=new Float32Array(8);
+ slots.forEach((s,i)=>{s.vx+=(s.tx-s.x)*.18;s.vy+=(s.ty-s.y)*.18;s.vx*=.86;s.vy*=.86;s.x+=s.vx;s.y+=s.vy;if(!s.on&&Math.abs(s.x)+Math.abs(s.y)+Math.abs(s.vx)+Math.abs(s.vy)<1e-4)s.x=s.y=s.vx=s.vy=0;g[i*2]=s.gx;g[i*2+1]=s.gy;o[i*2]=s.x;o[i*2+1]=s.y});
+ tilt.x+=(tilt.tx-tilt.x)*.08;tilt.y+=(tilt.ty-tilt.y)*.08;
+ gl.uniform2fv(uG,g);gl.uniform2fv(uO,o);gl.uniform1f(uT,ms/1000);gl.uniform2f(uL,tilt.x,tilt.y);
+ gl.drawElements(gl.TRIANGLES,idx.length,gl.UNSIGNED_SHORT,0);requestAnimationFrame(fr)}
+pick(0);document.fonts.ready.then(()=>pick(cur));requestAnimationFrame(fr)}
+saveCart();render();
+</script></body></html>
